@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "description": "sparql query",
+                    "type": "string"
+                },
+                "infer": {
+                    "description": "Whether to get inferred results in the response",
+                    "type": "boolean",
+                    "default": true
+                }
+            },
+            "required": [
+                "query"
+            ]
+        }
+    }
+}

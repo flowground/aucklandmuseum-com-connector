@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "index": {
+            "required": true,
+            "type": "string"
+        },
+        "operation": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "format": "application/json",
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,136 @@
+{
+    "title": "Auckland Museum",
+    "description": "This is technical documentation for the Auckland Museum API\n",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/aucklandmuseum.com/2.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "http://api.aucklandmuseum.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "get_media": {
+            "main": "./lib/actions/get_media.js",
+            "title": "Retrieve media associated with Collections and Cenotaph subjects in Auckland Museum",
+            "description": "Gets `media` at a given path\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_media.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_subject": {
+            "main": "./lib/actions/get_subject.js",
+            "title": "Explore details about a given subject node",
+            "description": "Gets information about a `subject` identified by the `identifier`.\n\nThe response format depends upon the `Accept` header.\n  - `text/html` - the default response type. Returned data can be easily viewed in any modern Internet Browser\n  - `application/ld+json` - the response will be in [JSON-LD](http://json-ld.org/)\n  - `application/json` - the response will be a simple JSON Object with keys (predicates) and values (objects).\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_subject.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_search": {
+            "main": "./lib/actions/get_search.js",
+            "title": "Perform simple search queries over Auckland Museum Collections and Cenotaph data",
+            "description": "Use this endpoint to perform simple search queries for finding information and subjects you may be interested in\n\nSearches performed via this endpoint run against an [Elastic](www.elastic.co) server. This endpoint mirrors the Elastic search API documented [here](https://www.elastic.co/guide/en/elasticsearch/reference/1.5/search-search.html)\n\nUse the\n  - `collectionsonline` index to perform searches over other all\nCollections data\n  - `cenotaph` index to perform searches over Cenotaph data\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_search.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_search": {
+            "main": "./lib/actions/post_search.js",
+            "title": "Perform complex search queries over Auckland Museum Collections and Cenotaph data",
+            "description": "Searches performed via this endpoint run against an [Elastic](www.elastic.co) server. This endpoint mirrors the Elastic search API documented [here](https://www.elastic.co/guide/en/elasticsearch/reference/1.5/search-search.html)\n\nUse the\n  - `collectionsonline` index to perform searches over other all Collections data\n  - `cenotaph` index to perform searches over Cenotaph data\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_search.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_sparql": {
+            "main": "./lib/actions/get_sparql.js",
+            "title": "Auckland Museum SPARQL endpoint",
+            "description": "You can execute your [SPARQL](http://www.w3.org/TR/rdf-sparql-query/) queries against this endpoint.\n\nThe sparql query should be provided as the value of the request parameter `query`.\nSet the `Accept` header to `application/sparql-results+xml` to get results in XML. Set it to `application/sparql-results+json` to get results in JSON. \n\n**Note:** This endpoints supports [JSON-P](http://json-p.org/). In order to get a JSON-P response, set the query parameter `callback` to your preferred callback function name. The default function name is `callback()`. When using JSON-P, there is no need to set the `Accept` header because the response will always be in `application/javascript`.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_sparql.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_sparql": {
+            "main": "./lib/actions/post_sparql.js",
+            "title": "Auckland Museum SPARQL endpoint",
+            "description": "You can execute your [SPARQL](http://www.w3.org/TR/rdf-sparql-query/) queries against this endpoint.\nThe sparql query should be provided as the value of the request parameter `query`.\nSet the `Accept` header to `application/sparql-results+xml` to get results in XML. Set it to `application/sparql-results+json` to get results in JSON. \n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_sparql.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
